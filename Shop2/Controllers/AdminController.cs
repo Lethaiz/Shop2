@@ -148,53 +148,7 @@ namespace Shop2.Controllers
         }
 
         //Xóa sản phẩm
-        [HttpGet]
-        public ActionResult XoaSanpham(int id)
-        {
-            if (Session["Taikhoanadmin"] == null)
-            {
-                return RedirectToAction("Login", "Admin");
-
-            }
-            else
-            {
-                //Lay ra doi tuong sach can xoa theo ma
-                SANPHAM sp = data.SANPHAMs.SingleOrDefault(n => n.MASP == id);
-                ViewBag.Masach = sp.MASP;
-                if (sp == null)
-                {
-                    Response.StatusCode = 404;
-                    return null;
-                }
-                return View(sp);
-            }
-        }
-
-
-        [HttpPost, ActionName("XoaSanpham")]
-        public ActionResult Xacnhanxoa(int id)
-        {
-            if (Session["Taikhoanadmin"] == null)
-            {
-                return RedirectToAction("Login", "Admin");
-
-            }
-            else
-            {
-                //Lay ra doi tuong sach can xoa theo ma
-                SANPHAM sp = data.SANPHAMs.SingleOrDefault(n => n.MASP == id);
-                ViewBag.MASP = sp.MASP;
-                if (sp == null)
-                {
-                    Response.StatusCode = 404;
-                    return null;
-                }
-                data.SANPHAMs.DeleteOnSubmit(sp);
-                data.SubmitChanges();
-                return RedirectToAction("Sanpham");
-            }
-        }
-        //Chinh sửa sản phẩm
+        
         [HttpGet]
         public ActionResult Suasanpham(int id)
         {
